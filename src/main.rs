@@ -14,6 +14,7 @@ async fn hello(req: HttpRequest) -> HttpResponse {
             _ => "",
         },
     };
+    println!("{}", host);
     let mut names = match reg_fit(host).await {
         Ok(value) => value,
         Err(_) => {
@@ -44,6 +45,7 @@ async fn main() -> std::io::Result<()> {
     let config_file = File::open("config.json").unwrap();
     let config: Config = serde_json::from_reader(config_file).unwrap();
     let port = config.port.clone();
+    println!("Started");
     HttpServer::new(move || {
 
         App::new()
