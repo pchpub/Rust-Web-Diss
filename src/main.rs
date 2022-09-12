@@ -14,9 +14,7 @@ async fn hello(req: HttpRequest) -> HttpResponse {
             _ => "",
         },
     };
-    //println!("{}", host);
-    let host = format!("{host}.");
-    let mut names = match reg_fit(&host).await {
+    let mut names = match reg_fit(host).await {
         Ok(value) => value,
         Err(_) => {
             return HttpResponse::Ok()
@@ -26,14 +24,14 @@ async fn hello(req: HttpRequest) -> HttpResponse {
     };
     for blackname in &config.blacklistnames {
         if names[1].contains(blackname) {
-            names[1] = "你妈什么时候";
+            names[1] = "你妈什么时候".to_string();
             break;
         }
     }
     
     let mut body_data = String::new();
     for item in names {
-        body_data.push_str(item);
+        body_data.push_str(&item);
     }
 
     return HttpResponse::Ok()
