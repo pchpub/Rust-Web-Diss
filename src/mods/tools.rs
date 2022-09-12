@@ -16,6 +16,7 @@ pub async fn reg_fit(url: &str) -> Result<Vec<&str>,()> {
     } else {
         return Err(());
     };
+    println!("{:?}", caps);
     let mut return_data = Vec::with_capacity(3);
     let mut index = 1;
     while index <= 3 {

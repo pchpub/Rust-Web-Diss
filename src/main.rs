@@ -43,13 +43,14 @@ async fn hello(req: HttpRequest) -> HttpResponse {
 async fn main() -> std::io::Result<()> {
     let config_file = File::open("config.json").unwrap();
     let config: Config = serde_json::from_reader(config_file).unwrap();
+    let port = config.port.clone();
     HttpServer::new(move || {
 
         App::new()
         .app_data(config.clone())
         .service(hello)
     })
-        .bind(("127.0.0.1", 2664))?
+        .bind(("127.0.0.1", port))?
         .run()
         .await
 }
