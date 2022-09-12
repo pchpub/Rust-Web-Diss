@@ -1,8 +1,10 @@
 use pcre2::bytes::Regex;
 
 pub async fn reg_fit(url: &str) -> Result<Vec<&str>,()> {
+    println!("{}", url);
+    //let url = format!("{url}.");
     let re = if let Ok(value) = Regex::new(
-        r"([\s\S]+?)\.([\s\S]+?)\.([\s\S]+?)",
+        r"([\s\S]+?)\.([\s\S]+?)\.([\s\S]+?).",
     ) {
         value
     } else {
@@ -28,5 +30,5 @@ pub async fn reg_fit(url: &str) -> Result<Vec<&str>,()> {
         }
         index += 1;
     }
-    return Ok(return_data)
+    return Ok(return_data);
 }

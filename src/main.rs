@@ -14,8 +14,9 @@ async fn hello(req: HttpRequest) -> HttpResponse {
             _ => "",
         },
     };
-    println!("{}", host);
-    let mut names = match reg_fit(host).await {
+    //println!("{}", host);
+    let host = format!("{host}.");
+    let mut names = match reg_fit(&host).await {
         Ok(value) => value,
         Err(_) => {
             return HttpResponse::Ok()
