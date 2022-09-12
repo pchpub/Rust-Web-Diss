@@ -23,8 +23,8 @@ async fn hello(req: HttpRequest) -> HttpResponse {
         }
     };
     for blackname in &config.blacklistnames {
-        if names[1].contains(blackname) {
-            names[1] = "你妈什么时候".to_string();
+        if names[0].contains(blackname) {
+            names[0] = "你妈什么时候".to_string();
             break;
         }
     }
